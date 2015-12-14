@@ -1,0 +1,68 @@
+<div>
+    <h2 translate="jhipsterMysqlApp.foo.home.title">Foos</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="foo.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span translate="jhipsterMysqlApp.foo.home.createLabel">Create a new Foo</span>
+                </button>
+            </div>
+            <div class="col-md-8">
+                <form name="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
+                    </div>
+                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Foo</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="jhipsterMysqlApp.foo.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="addr"><span translate="jhipsterMysqlApp.foo.addr">Addr</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="grade"><span translate="jhipsterMysqlApp.foo.grade">Grade</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="birthday"><span translate="jhipsterMysqlApp.foo.birthday">Birthday</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="salary"><span translate="jhipsterMysqlApp.foo.salary">Salary</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hobby"><span translate="jhipsterMysqlApp.foo.hobby">Hobby</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="foo in foos track by foo.id">
+                    <td><a ui-sref="foo.detail({id:foo.id})">{{foo.id}}</a></td>
+                    <td>{{foo.name}}</td>
+                    <td>{{foo.addr}}</td>
+                    <td>{{foo.grade}}</td>
+                        <td>{{foo.birthday | date:'mediumDate'}}</td>
+                    <td>{{foo.salary}}</td>
+                    <td translate="{{'jhipsterMysqlApp.Hobby.' + foo.hobby}}">{{foo.hobby}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="foo.detail({id:foo.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="foo.edit({id:foo.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="foo.delete({id:foo.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+</div>
