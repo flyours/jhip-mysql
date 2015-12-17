@@ -2,8 +2,8 @@
     "jhipsterMysqlApp": {
         "Hobby" : {
             "null": "",
-            "basketball": "basketball",
-            "volleyball": "volleyball"
+            "basketball": "篮球",
+            "volleyball": "排球"
         }
     }
 }
